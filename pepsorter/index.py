@@ -3,6 +3,7 @@ from flask import render_template, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from app import app
 from main import process_uploaded_image
+## Importing application
 
 
 @app.route('/', methods=['GET'])
