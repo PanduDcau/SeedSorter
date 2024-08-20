@@ -3,7 +3,6 @@ from flask import render_template, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 from app import app
 from main import process_uploaded_image
-## Importing application
 
 
 @app.route('/', methods=['GET'])
@@ -34,7 +33,8 @@ def process_image_route():
     result_path, purity, pepper_seed_count, total_count = process_uploaded_image(file_path)
 
     if result_path:
-        result_url = f"{request.host_url}results/{os.path.basename(result_path)}"
+        # Generate the final image URL from the output folder
+        result_url = f"{request.host_url}output/{os.path.basename(result_path)}"
     else:
         result_url = None
 
@@ -46,11 +46,10 @@ def process_image_route():
     })
 
 
-@app.route('/results/<filename>', methods=['GET'])
-def result_file(filename):
-    return send_from_directory(app.config['RESULTS_FOLDER'], filename)
+@app.route('/output/<filename>', methods=['GET'])
+def result_output_file(filename):
+    return send_from_directory(app.config['OUTPUT_FOLDER'], filename)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='10.22.53.25', port=4000)
-#10.22.53.25
+    app.run(debug=True,host='192.168.1.10', port=4000)
