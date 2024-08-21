@@ -52,4 +52,5 @@ def result_output_file(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True,host='192.168.1.10', port=4000)
+    app.run(debug=True,host='10.22.53.25', port=4000)
+#10.22.53.25
